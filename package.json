@@ -1,0 +1,26 @@
+{
+  "name": "basikmarketing-assignment",
+  "version": "1.0.0",
+  "description": "CDN services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOGESHB11/BasikMarketing-assignment.git"
+  },
+  "author": "Yogesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YOGESHB11/BasikMarketing-assignment/issues"
+  },
+  "homepage": "https://github.com/YOGESHB11/BasikMarketing-assignment#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1308.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20"
+  }
+}
