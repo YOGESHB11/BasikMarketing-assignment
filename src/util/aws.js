@@ -14,14 +14,14 @@ aws.config.update({
     region : bucketRegion
 })
 
-const uploadFile = function(file){
+const uploadFile = function(file,path){
     return new Promise(function(resolve,reject){
         let s3 = new aws.S3({"apiVersion" : "2006-03-01"})
         // console.log(file.mimetype)
         const uploadParams = {
             ACL : "public-read",
             Bucket : bucketName,
-            Key : "newFolder/"+file.originalname,
+            Key : `${path}/`+file.originalname,
             Body : file.buffer,
         }
 
