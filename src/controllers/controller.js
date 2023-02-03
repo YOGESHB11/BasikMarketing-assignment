@@ -9,7 +9,7 @@ const uploadData = async function(req,res){
         if(file && file.length > 0){
             const url = await util.uploadFile(file[0])
             console.log(url)
-            return res.status(200).send({status : true ,message : "Data has been successfully uploaded" , s3_Bucket_Link : url})
+            return res.status(200).send({status : true ,message : "CDN Entry successfully creted" , s3_Bucket_Link : url})
         }else{
             return res.status(400).send({status : false , message : 'Please upload a file'})
         }
@@ -28,6 +28,7 @@ const update = async function(req,res){
             console.log(url)
             const invalidCache = await cdn.invalidate(directoryPath)
             const distributionLink = process.env.DISTRIBUTION_DOMAIIN + directoryPath
+            console.log(distributionLink)
             return res.status(200).send({status : true ,message : "FIle successfully uploaded", CDN_Distribution_link : distributionLink})
         }else{
             return res.status(400).send({status : false , message : 'no file found'})
