@@ -1,24 +1,25 @@
 const aws = require('aws-sdk')
-// const {CLoudFrontClient, CreateInvalidationCommand} = require('@aws-sdk/client-cloudfront')
 const dotenv = require('dotenv')
 dotenv.config()
 
+//Stored credentials in .env module
 const bucketName = process.env.BUCKET_NAME 
 const bucketRegion = process.env.BUCKET_REGION
 const accessKey = process.env.ACCESS_KEY
 const secretAccessKey = process.env.SECRET_ACCESS_KEY
 
+//AWS Configuration
 aws.config.update({
     accessKeyId : accessKey,
     secretAccessKey : secretAccessKey,
     region : bucketRegion
 })
 
+//uploading a file in s3 bucket
 const uploadFile = function(file,path){
     return new Promise(function(resolve,reject){
         
         let s3 = new aws.S3({"apiVersion" : "2006-03-01"})
-        // console.log(file.mimetype)
         const uploadParams = {
             ACL : "public-read",
             Bucket : bucketName,
@@ -28,7 +29,6 @@ const uploadFile = function(file,path){
 
         s3.upload(uploadParams, function(err,result){
             if(err) {
-                // console.log(err)
                 return reject({error : err})
             }
             return resolve(result.Location)
@@ -36,6 +36,7 @@ const uploadFile = function(file,path){
     })
 }
 
+//Deleting file from S3 bucket
 const deleteFile = function(directoryPath){
     return new Promise((resolve,reject) => {
         let s3 = new aws.S3({"apiVersion" : "2006-03-01"})

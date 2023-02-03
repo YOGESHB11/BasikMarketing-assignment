@@ -29,7 +29,7 @@ const update = async function(req,res){
             const url = await util.uploadFile(file[0],directoryPath)
             console.log(url)
             const invalidCache = await cdn.invalidate(directoryPath)
-            return res.status(200).send({status : true ,message : "File successfully uploaded"})
+            return res.status(200).send({status : true ,message : "File successfully updated"})
         }else{
             return res.status(400).send({status : false , message : 'no file found'})
         }
