@@ -5,7 +5,9 @@ route.get("/test-me", function(req,res){
     res.send("running")
 })
 
-route.post("/upload",controller.uploadData)
+route.post("/create",controller.uploadData)
+
+route.post("/update" , controller.update)
 
 route.delete("/delete", controller.deleteData)
 
