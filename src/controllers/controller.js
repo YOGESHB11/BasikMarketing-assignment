@@ -11,9 +11,9 @@ const uploadData = async function(req,res){
         if(file && file.length > 0){
             const url = await util.uploadFile(file[0],directoryPath)
             console.log(url)
-             let distPath= distribution_domain + '/' + directoryPath + '/' + file[0].originalname
-            console.log(distPath)
-            return res.status(200).send({status : true ,message : "CDN Entry successfully created" , s3_Bucket_Link : url , CDN_distribution_link : distPath})
+             let destPath= distribution_domain + '/' + directoryPath + '/' + file[0].originalname
+            console.log(destPath)
+            return res.status(200).send({status : true ,message : "CDN Entry successfully created" , s3_Bucket_Link : url , CDN_distribution_link : destPath})
         }else{
             return res.status(400).send({status : false , message : 'Please upload a file'})
         }
