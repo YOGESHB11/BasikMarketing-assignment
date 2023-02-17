@@ -1,5 +1,6 @@
 const util = require("../util/aws")
 const cdn = require('../util/cloudfront')
+const distribution_domain = 'https://db7dyg412q1xf.cloudfront.net'
 
 const uploadData = async function(req,res){
     try{
@@ -10,7 +11,9 @@ const uploadData = async function(req,res){
         if(file && file.length > 0){
             const url = await util.uploadFile(file[0],directoryPath)
             console.log(url)
-            return res.status(200).send({status : true ,message : "CDN Entry successfully created" , s3_Bucket_Link : url})
+             let distPath= distribution_domain + '/' + directoryPath + '/' + file[0].originalname
+            console.log(distPath)
+            return res.status(200).send({status : true ,message : "CDN Entry successfully created" , s3_Bucket_Link : url , CDN_distribution_link : distPath})
         }else{
             return res.status(400).send({status : false , message : 'Please upload a file'})
         }
@@ -29,7 +32,8 @@ const update = async function(req,res){
             const url = await util.uploadFile(file[0],directoryPath)
             console.log(url)
             const invalidCache = await cdn.invalidate(directoryPath)
-            return res.status(200).send({status : true ,message : "File successfully updated"})
+            const path = distribution_domain + '/' + directoryPath + '/' + file[0].originalname
+            return res.status(200).send({status : true ,message : "File successfully updated" , CDN_distribution_link : path})
         }else{
             return res.status(400).send({status : false , message : 'no file found'})
         }

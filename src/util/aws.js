@@ -29,6 +29,7 @@ const uploadFile = function(file,path){
 
         s3.upload(uploadParams, function(err,result){
             if(err) {
+                console.log(err)
                 return reject({error : err})
             }
             return resolve(result.Location)

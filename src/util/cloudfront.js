@@ -18,7 +18,7 @@ aws.config.update({
 const invalidate = async function(directoryPath){
     const cloudfront = new aws.CloudFront();
     const invalidationParam = {
-        DistributionId: 'E3RIAX7HDM2V68',
+        DistributionId: 'E16BO0CEZW1N5N',
         InvalidationBatch: {
             CallerReference: Date.now().toString(),
             Paths: {
@@ -29,9 +29,10 @@ const invalidate = async function(directoryPath){
     }
     const invalidation = await cloudfront.createInvalidation(invalidationParam, function(err,data){
         if(err) console.log(err)
-        else console.log(data)
+        else {
+            console.log(data)
+        }
     })
 }
-
 
 module.exports = {invalidate}
