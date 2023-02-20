@@ -5,7 +5,7 @@ const distribution_domain = 'https://db7dyg412q1xf.cloudfront.net'
 const uploadData = async function(req,res){
     try{
         const {directoryPath} = req.body
-        console.log(directoryPath)
+        console.log(req.body)
         if(!directoryPath) return res.status(400).send({status : false, message : "Please provide directory path"})
         const file = req.files
         if(file && file.length > 0){
